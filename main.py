@@ -2,7 +2,7 @@ from cgi import print_exception
 
 
 class Wallet:
-    def __init__(self, money):
+    def __init__(self, money=0):
         self.money = money
         
     def credit(self, amount):
@@ -56,8 +56,8 @@ class Customer(Person):
         super().__init__(name, location, money)
 
     def _is_in_range(self, vendor):
-        distance = vendor.location - self.location
-        if distance > vendor.range:
+        distance = abs(vendor.location - self.location)
+        if distance <= vendor.range:
             return True
         else:
             return False
